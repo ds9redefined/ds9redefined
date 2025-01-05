@@ -11,13 +11,8 @@ input = MPEG2Source("%source_file%").ConvertToYUV422()
 # Interpolate 30fps sections to 24fps. Use Trim(FirstFrame#, LastFrame#) to only interpolate and output that section. User ReplaceFramesSimple(mappings=[FirstFrame# LastFrame#]) to insert that section into the episode as a whole.
 #RIFE = input.ConvertBits(32).ConvertToPlanarRGB(matrix="601:l").RIFE(model=65, fps_num=24000, fps_den=1001, gpu_thread=4).ConvertBits(8, dither=1).ConvertToYUV422(matrix="601:l")
 
-# Eliminate ntsc3d checkerboarding
-#chroma = IVTC.checkmate(thr=1, max=1, tthr2=0)
-#luma = IVTC.checkmate(thr=0, max=1, tthr2=0)
-#decheck = luma.MergeChroma(chroma)
-
 # DeRainbow
-#decheck.ASTDRmc()
+#IVTC.ASTDRmc()
 
 # Deghosting (generated titles/credits in particular)
 #vsLGhost(mode=[1, 1], shift=[3, 4], intensity=[30, 20])
