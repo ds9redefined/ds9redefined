@@ -1,4 +1,4 @@
-input = LSMASHVideoSource("%source_file%").AssumeTFF().Crop(0, 4, 0, -4).ConvertBits(8)
+input = LSMASHVideoSource("%source_file%").AssumeTFF().Crop(0, 4, 0, -4)
 
 input
 
