@@ -14,9 +14,9 @@ input
 #ConvertBits(32).ConvertToPlanarRGB(matrix="601:l").RIFE(model=65, fps_num=24000, fps_den=1001, gpu_thread=4).ConvertBits(10, dither=1).ConvertToYUV422(matrix="601:l")
 
 # DeRainbow
-#Tweak(sat=2)
+#Tweak(sat=1.5)
 #ASTDRmc(tempsoftsc=1)
-#Tweak(sat=.5)
+#Tweak(sat=.75)
 
 # Deghosting (generated titles/credits in particular)
 #vsLGhost(mode=[1, 1, 1, 1, 1], shift=[3, 4, 5, 6, 7], intensity=[25, 20, 15, 10, 5])
