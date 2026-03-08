@@ -2,11 +2,8 @@ input = LSMASHVideoSource("DS9_TheMaquisPt2.mov").AssumeTFF().Crop(0, 6, 0, -2)
 
 inputDW = input.DoubleWeave()
 
-DIDraft = input.QTGMC(preset="draft").TDecimate(mode=2, rate=23.976)
 RIFEConv = input.fmtc_bitdepth(32).ConvertToPlanarRGB(matrix="601:l").RIFE(model=65, fps_num=24000, fps_den=1001).ConvertToYUV422(matrix="601:l").fmtc_bitdepth(10)
 DI = input.QTGMC(Preset="Slower", SourceMatch=3, Lossless=2).TDecimate(mode=2, rate=23.976)
-
-#.RIFE(model=65, fps_num=24000, fps_den=1001)
 
 PD1 = inputDW.Pulldown(0, 2) 
 PD2 = inputDW.Pulldown(0, 3)
@@ -16,11 +13,6 @@ PD5 = inputDW.Pulldown(2, 4)
 
 Row1 = StackHorizontal(PD1, PD2, PD3)
 Row2 = StackHorizontal(PD4, PD5, DIDraft)
-
-#StackVertical(Row1, Row2)
-
-#Make interlacing easier to see
-#Tweak(bright=-50, cont=3).Sharpen(1)
 
 PD1
 
