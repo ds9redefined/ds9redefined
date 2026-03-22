@@ -1,0 +1,81 @@
+{
+    "date": "Wed Feb 25 18:30:35 2026 GMT-0600",
+    "editable": true,
+    "enabled": true,
+    "name": "4K Close",
+    "path": "C:/ProgramData/Topaz Labs LLC/Topaz Video/presets/4K Close.json",
+    "saveOutputSettings": false,
+    "settings": {
+        "denoise": {
+            "active": false,
+            "model": "nyxn-3",
+            "modelName": "nyxn-3",
+            "saveGrainExtraction": false
+        },
+        "enhance": {
+            "active": true,
+            "addNoise": 0,
+            "auto": 2,
+            "compress": 1,
+            "deblur": -15,
+            "dehalo": 2,
+            "denoise": 25,
+            "detail": 10,
+            "fieldOrder": 0,
+            "focusFixLevel": "Off",
+            "isSecondEnhancement": false,
+            "model": "iris-2",
+            "recoverOriginalDetailValue": 20,
+            "sharpen": 10,
+            "videoType": 1
+        },
+        "grain": {
+            "active": false,
+            "grainStrength": 0.5,
+            "grainSigma": 0.5,
+            "grainSize": 2,
+            "grainType": 0
+        },
+        "hdr": {
+            "active": false,
+            "auto": 0,
+            "exposure": 0,
+            "fieldOrder": 0,
+            "hdrOutputTRC": 0,
+            "model": "hyp-1",
+            "saturation": 0,
+            "sdrInflectionPoint": 0.7,
+            "videoType": 1
+        },
+        "motionblur": {
+            "active": false,
+            "modelName": "thm-2"
+        },
+        "output": {
+            "active": true,
+            "cropToFit": false,
+            "customResolutionPriority": 2,
+            "lockAspectRatio": true,
+            "outSizeMethod": 9,
+            "outputPAR": 0,
+            "scale": "800"
+        },
+        "slowmo": {
+            "active": false,
+            "duplicate": true,
+            "duplicateThreshold": 10,
+            "factor": 1,
+            "model": "apo-8",
+            "sceneSplitEnabled": false
+        },
+        "stabilize": {
+            "active": false,
+            "method": 1,
+            "reduceMotion": false,
+            "reduceMotionIteration": 2,
+            "rsc": false,
+            "smooth": 50
+        }
+    },
+    "veaiversion": "1.2.0"
+}
