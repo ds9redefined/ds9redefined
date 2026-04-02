@@ -14,6 +14,7 @@ set "filedir=%~dp1"
 
 :: Construct and execute the command
 ffmpeg -y ^
+  -apply_cropping 0 ^
   -i "%filedir%%filename%.mov" ^
   -c:v libx264 ^
   -profile:v high ^
@@ -21,9 +22,9 @@ ffmpeg -y ^
   -maxrate 3M ^
   -bufsize 6M ^
   -preset veryslow ^
-  -tune film
+  -tune film ^
   -pix_fmt yuv420p ^
-  -aspect 4:3 ^
+  -vf "setsar=10/11" ^
   -color_range tv ^
   -colorspace smpte170m ^
   -color_trc smpte170m ^
@@ -31,10 +32,11 @@ ffmpeg -y ^
   -sws_flags "spline+accurate_rnd+full_chroma_int+full_chroma_inp" ^
   -pass 1 ^
   -an ^
-  -f null
+  -f null ^
   NUL
 
 ffmpeg -y ^
+  -apply_cropping 0 ^
   -i "%filedir%%filename%.mov" ^
   -c:v libx264 ^
   -profile:v high ^
@@ -42,9 +44,9 @@ ffmpeg -y ^
   -maxrate 3M ^
   -bufsize 6M ^
   -preset veryslow ^
-  -tune film
+  -tune film ^
   -pix_fmt yuv420p ^
-  -aspect 4:3 ^
+  -vf "setsar=10/11" ^
   -color_range tv ^
   -colorspace smpte170m ^
   -color_trc smpte170m ^
