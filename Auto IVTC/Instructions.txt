@@ -1,0 +1,37 @@
+Auto IVTC
+
+In your folder, you'll need:
+
+1. Breaks.txt - This is a list of the first frame of each fade-in from the black of the commercial breaks. The script will insert these as starting frames for scenes where edits can't be detected because of the fades. Scrub through the episode to determine where each of these starting points are and write those frame numbers to Breaks.txt and save.
+
+2. Edit each avs script to have the input be the episode you're working on and save.
+
+3. In a command prompt, navigate to the this folder and run python analyze_all.py
+
+What this does
+This analyzes the full video 5 times, 1 for each pulldown cadence (see Pulldown.avs). Using combing detection, it determines if a frame is combed or not. It then creates an Excel sheet as follows:
+Column A - Frame number
+Column B - PD1 - if combed, 0, if clean, 1
+Column C - PD2 - if combed, 0, if clean, 1
+Column D - PD3 - if combed, 0, if clean, 1
+Column E - PD4 - if combed, 0, if clean, 1
+Column F - PD5 - if combed, 0, if clean, 1
+
+It then analyzes the video using motion-estimated scene edit detection logic (which you can see in Scenes.avs). It uses QTGMC and TDecimate to avoid combing being an issue for scene detection. The frame ranges are written to a second sheet in the Excel file.
+
+4. Open the resulting Excel file and go to the Scene Ranges sheet. In the 3rd column you can put =B1-A1 and copy it down to the end, looking for any ranges that seem too short and spot checking them. Make any corrections and save.
+
+5. Run python build_mappings.py.
+
+What this does:
+Using the frame ranges from Scene Ranges, it adds the comb detection values from the Frame Analysis sheet together within those ranges for each pulldown cadence. The Cadence with the highest value is the winner. In the case of a tie, the first one wins. So for example if PD2 and PD3 are equal, PD2 wins. If PD5 and PD1 are equal, PD5 wins.
+
+The ranges are written respectively to each winning cadences mapping file (PD1Map.txt, PD2Map.txt, etc.)
+
+6. Run analyze_combed.py
+
+What this does:
+First it uses scene edit detection on QTGMC without TDecimate (see DI-Analyze.avs), and writes whether or not an edit is detected to a 3rd sheet in the excel file. For each frame, using luma difference, it attempts to determine if that frame or the  frame before it is an orphaned field and keeps that one.
+Then it uses comb detection on your S##E##.avs script (referenced in IVTC-Comb.avs) as it currently stands and matches those frames up with the deinterlaced orphaned fields to create DIMap.txt.
+
+7. You can now scrub through the whole episode and make any needed corrections to the mapping files.
