@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE bfx>
+<bfx>
+ <presets>
+  <preset custom="1" time="-1">
+   <metadata>
+    <name>DS9 4K</name>
+    <filter>Grain</filter>
+    <description></description>
+    <name>DS9 4K</name>
+    <tags></tags>
+   </metadata>
+   <parameters>
+    <parameter id="amount" type="float">100</parameter>
+    <parameter id="amount.blue" type="float">7.5</parameter>
+    <parameter id="amount.green" type="float">12</parameter>
+    <parameter id="amount.red" type="float">9</parameter>
+    <parameter id="animate">true</parameter>
+    <parameter id="input"></parameter>
+    <parameter id="mono">false</parameter>
+    <parameter id="response.min" type="float">20</parameter>
+    <parameter id="response.pos" type="float">50</parameter>
+    <parameter id="response.rng" type="float">80</parameter>
+    <parameter id="seed" type="int">0</parameter>
+    <parameter id="size" type="float">1</parameter>
+    <parameter id="softness" type="float">0</parameter>
+   </parameters>
+  </preset>
+ </presets>
+</bfx>
