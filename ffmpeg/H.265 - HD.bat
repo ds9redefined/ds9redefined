@@ -17,9 +17,7 @@ ffmpeg -y ^
   -i "%filedir%%filename%.mov" ^
   -c:v libx265 ^
   -profile:v main10 ^
-  -b:v 7M ^
-  -maxrate 16M ^
-  -bufsize 32M ^
+  -crf 24 ^
   -preset slow ^
   -tune grain ^
   -pix_fmt yuv420p10le ^
@@ -29,29 +27,6 @@ ffmpeg -y ^
   -color_trc bt709 ^
   -color_primaries bt709 ^
   -sws_flags "spline+accurate_rnd+full_chroma_int+full_chroma_inp" ^
-  -pass 1 ^
-  -an ^
-  -f null ^
-  NUL
-
-ffmpeg -y ^
-  -i "%filedir%%filename%.mov" ^
-  -c:v libx265 ^
-  -profile:v main10 ^
-  -b:v 7M ^
-  -maxrate 16M ^
-  -bufsize 32M ^
-  -preset slow ^
-  -tune grain ^
-  -pix_fmt yuv420p10le ^
-  -vf "scale=1440:1080:flags=lanczos" ^
-  -color_range tv ^
-  -colorspace bt709 ^
-  -color_trc bt709 ^
-  -color_primaries bt709 ^
-  -sws_flags "spline+accurate_rnd+full_chroma_int+full_chroma_inp" ^
-  -an ^
-  -pass 2 ^
   "%filedir%%filename%_HD.mp4"
 
 echo.
