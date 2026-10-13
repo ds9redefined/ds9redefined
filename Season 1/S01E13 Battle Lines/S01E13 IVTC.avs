@@ -1,0 +1,34 @@
+input = LSMASHVideoSource("DS9_Battlelines.mov").AssumeTFF().Crop(0, 6, 0, -2)
+
+inputDW = input.DoubleWeave()
+
+RIFEConv = input.fmtc_bitdepth(32).ConvertToPlanarRGB(matrix="601:l").RIFE(model=65, fps_num=24000, fps_den=1001).ConvertToYUV422(matrix="601:l").fmtc_bitdepth(10)
+RIFEDI = input.QTGMC(Preset="Slower", SourceMatch=3, Lossless=2).fmtc_bitdepth(32).ConvertToPlanarRGB(matrix="601:l").RIFE(model=65, fps_num=24000, fps_den=1001).ConvertToYUV422(matrix="601:l").fmtc_bitdepth(10)
+DI = input.QTGMC(Preset="Slower", SourceMatch=3, Lossless=2)
+DIBlend = input.QTGMC(Preset="Slower", SourceMatch=3, Lossless=2).TDecimate(mode=7, hybrid=0, rate=23.976)
+
+PD1 = inputDW.Pulldown(0, 2) 
+PD2 = inputDW.Pulldown(0, 3)
+PD3 = inputDW.Pulldown(1, 3)
+PD4 = inputDW.Pulldown(1, 4)
+PD5 = inputDW.Pulldown(2, 4)
+
+PD1
+
+ReplaceFramesSimple(PD2, "PD2Map.txt")
+ReplaceFramesSimple(PD3, "PD3Map.txt")
+ReplaceFramesSimple(PD4, "PD4Map.txt")
+ReplaceFramesSimple(PD5, "PD5Map.txt")
+ReplaceFramesSimple(RIFEConv, "RIFEMap.txt")
+ReplaceFramesSimple(RIFEDI, "RIFEDIMap.txt")
+ReplaceFramesSimple(DIBlend, "DIBlendMap.txt")
+RemapFrames(fileName="DIMap.txt", sourceClip=DI)
+
+IVTCDI = last.QTGMC(Preset="Slower", SourceMatch=3, Lossless=2, fpsdivisor=2)
+ReplaceFramesSimple(IVTCDI, "IVTCDIMap.txt")
+
+# DeRainbow
+ASTDRmc(tempsoftrad=1, tempsoftth=15, tempsoftsc=1)
+
+RIFEGen = AVISource("S01E13 RifeGen.avs")
+ReplaceFramesSimple(RIFEGen, "RIFEGenMap.txt")
