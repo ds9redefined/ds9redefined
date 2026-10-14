@@ -1,0 +1,1 @@
+AVISource("S01E03 IVTC.avs").Trim(10248, 10367)
