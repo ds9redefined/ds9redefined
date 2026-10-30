@@ -8,7 +8,7 @@ The episode folder (or a folder above it) must have the episode number in its na
 
 If a script fails, the window stays open showing the error, and the error is also saved to Step1_error.txt, Step2_error.txt or Step3_error.txt in the episode folder. The next successful run of that script deletes the file.
 
-1. Double-click Step1.py
+1. Run python Step1.py
 
 What this does:
 It finds the .mov file in the folder. If there is one, it asks you to confirm it; if there are several, it asks which one to use. It then creates these files with the MOV file and episode number filled in:
