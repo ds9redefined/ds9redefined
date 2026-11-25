@@ -1,4 +1,4 @@
-input = LSMASHVideoSource("DS9_BloodOath.mov").AssumeTFF().Crop(0, 4, 0, -4)
+input = LSMASHVideoSource("DS9_BloodOath.mov").AssumeTFF().Crop(0, 6, 0, -2)
 
 inputDW = input.DoubleWeave()
 
@@ -12,7 +12,7 @@ RIFEConv = input.ConvertBits(32).ConvertToPlanarRGB(matrix="601:l").RIFE(model=6
 DI = input.QTGMC(Preset="Slower", SourceMatch=3, Lossless=2).AssumeFPS("ntsc_film")
 
 
-PD3
+PD1
 
 ReplaceFramesSimple(PD2, "PD2Map.txt")
 ReplaceFramesSimple(PD3, "PD3Map.txt")
@@ -21,7 +21,5 @@ ReplaceFramesSimple(PD5, "PD5Map.txt")
 ReplaceFramesSimple(RIFEConv, "RIFEMap.txt")
 RemapFrames(fileName="DIMap.txt", sourceClip=DI)
 
-#Tweak(bright=50, cont=3)
-
 # DeRainbow
-#ASTDRmc(tempsoftsc=5)
+ASTDRmc(tempsoftrad=1, tempsoftth=15, tempsoftsc=1)
