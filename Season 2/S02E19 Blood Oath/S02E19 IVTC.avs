@@ -9,7 +9,7 @@ PD4 = inputDW.Pulldown(1, 3)
 PD5 = inputDW.Pulldown(2, 4)
 
 RIFEConv = input.ConvertBits(32).ConvertToPlanarRGB(matrix="601:l").RIFE(model=65, fps_num=24000, fps_den=1001, gpu_thread=4).ConvertBits(10, dither=1).ConvertToYUV422(matrix="601:l")
-DI = input.QTGMC(Preset="Slower", SourceMatch=3, Lossless=2).AssumeFPS("ntsc_film")
+DI = input.QTGMC(Preset="Slower", SourceMatch=3, Lossless=2).TDecimate(mode=2, rate=23.976)
 
 
 PD1
